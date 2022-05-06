@@ -20,6 +20,6 @@ View(Film)
 
 
 Type = list(Name="varchar(50)",Rating ="Int(25)",Year="varchar(50)")
-db_write_table(con,"Movies",value = Film, field.types= Type, row.names = FALSE )
+
 
 dbWriteTable(con,name = "Movies",value = Film, field.types= Type, row.names = FALSE )
