@@ -1,8 +1,8 @@
 library(rvest)
 library(dplyr)
 library(DBI)
-con <- dbConnect(odbc::odbc(), .connection_string = "Driver={MySQL ODBC 8.0 Unicode Driver};", 
-            server = "localhost", Database = "data" ,UID = "root", PWD = 845231, Port = 3306 )
+con <- DBI::dbConnect(odbc::odbc(), .connection_string = "Driver={MySQL ODBC 8.0 Unicode Driver};",
+            server = "localhost",Database = "data",UID = "root", PWD = 845231, Port = 3306 )
 
 Film = data.frame()
 
@@ -19,3 +19,7 @@ for (ir in seq(from = 1, to =5001 , by = 50)) {
 View(Film)
 
 
+Type = list(Name="varchar(50)",Rating ="Int(25)",Year="varchar(50)")
+db_write_table(con,"Movies",value = Film, field.types= Type, row.names = FALSE )
+
+dbWriteTable(con,name = "Movies",value = Film, field.types= Type, row.names = FALSE )
